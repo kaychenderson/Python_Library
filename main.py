@@ -67,7 +67,7 @@ class CircularQueue:
 
     def enqueue(self, value):
         if (self.rear + 1) % self.max_size == self.front:
-            print("Queue is full")
+            print("Fila cheia")
             return
         if self.front == -1:
             self.front = 0
@@ -76,7 +76,7 @@ class CircularQueue:
 
     def dequeue(self):
         if self.front == -1:
-            print("Queue is empty")
+            print("Fila vazia")
             return None
         data = self.queue[self.front]
         if self.front == self.rear:
@@ -117,19 +117,19 @@ class Library:
     def add_book(self, code, title, author):
         book = Book(code, title, author)
         self.books_tree = self.avl.insert(self.books_tree, title, book)
-        print(f"Book added: {book}")
+        print(f"Livro adicionado: {book}")
 
     def search_book(self, title):
         current = self.books_tree
         while current:
             if title == current.key:
-                print(f"Book found: {current.value}")
+                print(f"Livro encontrado: {current.value}")
                 return current.value
             elif title < current.key:
                 current = current.left
             else:
                 current = current.right
-        print("Book not found")
+        print("Livro não encontrado")
         return None
 
     def borrow_book(self, title):
@@ -137,29 +137,29 @@ class Library:
         if book:
             self.reservation_queue.enqueue(book)
             self.history_stack.push(("borrow", book))
-            print(f"Book borrowed: {book}")
+            print(f"Livro emprestado: {book}")
 
     def return_book(self):
         book = self.reservation_queue.dequeue()
         if book:
             self.history_stack.push(("return", book))
-            print(f"Book returned: {book}")
+            print(f"Livro devolvido: {book}")
 
     def undo_last_action(self):
         action = self.history_stack.pop()
         if not action:
-            print("No actions to undo")
+            print("Nenhuma ação para desfazer")
             return
         action_type, book = action
         if action_type == "borrow":
             self.reservation_queue.dequeue()
-            print(f"Undo borrow: {book}")
+            print(f"Desfazer empréstimo: {book}")
         elif action_type == "return":
             self.reservation_queue.enqueue(book)
-            print(f"Undo return: {book}")
+            print(f"Desfazer devolução: {book}")
 
     def display_books(self):
-        print("Books in library:")
+        print("Livros na biblioteca:")
         self.avl.inorder_traversal(self.books_tree)
 
 library = Library()

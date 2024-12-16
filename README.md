@@ -89,3 +89,30 @@ Fornece uma pilha para armazenar o histórico de ações realizadas.
 Representa os atributos básicos de um livro, como código, título e autor.
 - Classe Library:
 Controla a lógica principal, incluindo gestão de livros, empréstimos, devoluções e histórico.
+
+<h2>📚 Exemplos de Uso</h2>
+
+Exemplo:
+```bash
+# Inicializa a biblioteca
+library = Library()
+
+# Adiciona livros
+library.add_book(1, "Dom Casmurro", "Machado de Assis")
+library.add_book(2, "O Pequeno Príncipe", "Antoine de Saint-Exupéry")
+
+# Lista os livros em ordem alfabética
+library.display_books()
+
+# Busca um livro pelo título
+library.search_book("Dom Casmurro")
+
+# Realiza um empréstimo
+library.borrow_book("O Pequeno Príncipe")
+
+# Devolve um livro
+library.return_book()
+
+# Desfaz a última ação
+library.undo_last_action()
+```
